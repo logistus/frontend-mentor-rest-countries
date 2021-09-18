@@ -27,6 +27,32 @@ header {
   padding: 30px 0;
 }
 
+select,
+input {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px #efefef;
+  color: var(--light-input);
+  outline: none;
+}
+
+input {
+  padding: 20px 30px;
+  width: 480px;
+}
+
+select {
+  appearance: none;
+  color: var(--light-texts);
+  background-size: 15px 15px !important;
+  padding: 20px 40px 20px 30px;
+  width: 200px;
+}
+
+::placeholder {
+  color: var(--light-input);
+}
+
 .countries {
   display: flex;
   justify-content: space-between;
@@ -41,6 +67,13 @@ header {
   box-shadow: 0 5px 5px #efefef;
   overflow: hidden;
   color: var(--light-texts);
+}
+
+.country-flag {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 160px;
 }
 
 .country-info {
