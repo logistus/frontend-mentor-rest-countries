@@ -2,13 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import CountryDetails from './components/CountryDetails';
+import Header from './components/Header';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import ThemeProvider from './Provider';
 
 ReactDOM.render(
   <ThemeProvider>
-    <App />
+    <Header />
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <App />
+        </Route>
+        <Route path="/:country_code">
+          <CountryDetails />
+        </Route>
+      </Switch>
+    </Router>
   </ThemeProvider>,
   document.getElementById('root')
 );

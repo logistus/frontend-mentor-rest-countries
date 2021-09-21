@@ -1,6 +1,7 @@
 .container {
   max-width: 1440px;
   margin: auto;
+  padding: 25px;
 }
 
 .dark-bg {
@@ -11,10 +12,42 @@
   background-color: var(--light-background);
 }
 
-header {
+.header-light {
   background-color: var(--light-elements);
-  padding: 25px;
   border-bottom: 2px solid #efefef;
+}
+
+.header-dark {
+  background-color: #2b3743;
+  color: #fff;
+  border-bottom: 2px solid #2b3743;
+}
+
+.moon {
+  width: 15px;
+  height: 15px;
+}
+
+.moon-dark {
+  fill: red;
+}
+
+button.dark-mode {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button.dark-mode:hover {
+  cursor: pointer;
+}
+
+button.dark-mode-dark {
+  color: #fff;
 }
 
 .flex-center {
@@ -24,49 +57,72 @@ header {
 }
 
 .filters {
-  padding: 30px 0;
+  gap: 20px;
 }
 
 select,
 input {
   border-radius: 10px;
   border: none;
+  outline: none;
+  background-size: 15px 15px !important;
+}
+
+select.light,
+input.light {
   box-shadow: 0 5px 5px #efefef;
   color: var(--light-input);
-  outline: none;
+  background-color: #fff !important;
+}
+
+input.light::placeholder {
+  color: var(--light-input);
+}
+
+input.dark::placeholder {
+  color: #e3eef4;
+}
+
+select.dark,
+input.dark {
+  background-color: #2b3743 !important;
+  box-shadow: 0 5px 5px #1f2c35;
+  color: #fff;
 }
 
 input {
-  padding: 20px 30px;
+  padding: 20px 30px 20px 40px;
   width: 480px;
 }
 
 select {
   appearance: none;
-  color: var(--light-texts);
-  background-size: 15px 15px !important;
   padding: 20px 40px 20px 30px;
   width: 200px;
 }
 
-::placeholder {
-  color: var(--light-input);
-}
-
 .countries {
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
   gap: 50px;
+  padding-bottom: 25px;
 }
 
 .country {
-  width: 265px;
-  background-color: var(--light-elements);
   border-radius: 10px;
-  box-shadow: 0 5px 5px #efefef;
   overflow: hidden;
+}
+
+.country-light {
   color: var(--light-texts);
+  box-shadow: 0 5px 5px #efefef;
+  background-color: var(--light-elements);
+}
+
+.country-dark {
+  color: var(--light-elements);
+  box-shadow: 0 5px 5px #1f2c35;
+  background-color: var(--dark-elements);
 }
 
 .country-flag {
@@ -87,4 +143,134 @@ select {
 
 .country-info strong {
   font-weight: 600;
+}
+
+.details {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-light {
+  color: var(--light-texts);
+}
+
+.details-dark {
+  color: var(--light-elements);
+}
+
+.details div {
+  flex-basis: 50%;
+}
+
+.details-other h1 {
+  margin-bottom: 20px;
+}
+
+.details-panels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-panels div div {
+  line-height: 30px;
+}
+
+.details-borders {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.details-borders strong {
+  margin-right: 20px;
+}
+
+.borders {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.details-borders a:link,
+.details-borders a:visited,
+.back-button {
+  padding: 5px 10px;
+  margin: 0 5px 5px 5px;
+  border-radius: 5px;
+}
+
+.details-borders-light a:link,
+.details-borders-light a:visited,
+.back-button-light {
+  box-shadow: 0 0 5px 2px #f0f0f0;
+  color: black;
+}
+
+.details-borders-dark a:link,
+.details-borders-dark a:visited,
+.back-button-dark {
+  box-shadow: 0 0 5px 2px #1f2c35;
+  color: #fff;
+  background-color: #2b3743 !important;
+}
+
+.back-button {
+  padding: 10px 30px 10px 20px;
+  background-size: 15px 15px !important;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+}
+
+p.error {
+  margin-top: 20px;
+  color: red;
+}
+
+@media screen and (max-width: 430px) {
+  .filters {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  header {
+    font-size: 0.5em;
+  }
+
+  .details {
+    flex-flow: column;
+    margin-top: 50px;
+  }
+
+  .details-flag img {
+    width: 100% !important;
+    margin-bottom: 50px;
+  }
+
+  .details-panels {
+    flex-flow: column;
+    gap: 50px;
+  }
+
+  .details-borders {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+
+  .details-borders strong {
+    margin-bottom: 20px;
+  }
 }

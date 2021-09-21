@@ -1,6 +1,10 @@
+import {ThemeContext} from '../Provider';
+import { useContext } from 'react';
+
 function Country({ country }) {
+  const {theme} = useContext(ThemeContext);
   return (
-    <div className="country">
+    <div className={`country country-${theme}`}>
       <div className="country-flag" style={{ backgroundImage: `url(${country.flag})` }}>
       </div>
       <div className="country-info">
