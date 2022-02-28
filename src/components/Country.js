@@ -5,7 +5,7 @@ function Country({ country }) {
   const {theme} = useContext(ThemeContext);
   return (
     <div className={`country country-${theme}`}>
-      <div className="country-flag" style={{ backgroundImage: `url(${country.flags.png})` }}>
+      <div className="country-flag" style={{ backgroundImage: `url(${country.flags.svg})` }}>
       </div>
       <div className="country-info">
         <h2>{country.name.common}</h2>
