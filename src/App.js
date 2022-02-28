@@ -16,7 +16,7 @@ function App() {
   const {theme} = useContext(ThemeContext);
 
   const fetchAll = () => {
-    axios.get(`https://api.countrylayer.com/v2/all?access_key=${process.env.ACCESS_KEY}`).then(response => {
+    axios.get(`https://restcountries.com/v3.1/all`).then(response => {
       setCountries(response.data);
       setLoading(false);
     }).catch(err => {
@@ -33,7 +33,7 @@ function App() {
   const filterByRegion = (e) => {
     if (e.target.value !== "") {
       setRegion(e.target.value);
-      axios.get('https://restcountries.eu/rest/v2/region/'+e.target.value).then(response => {
+      axios.get(`https://restcountries.com/v3.1/region/${e.target.value}`).then(response => {
         setCountries(response.data);
       }).catch(err => {
         setCountries("");
@@ -48,7 +48,7 @@ function App() {
   const filterByName = (e) => {
     console.log(e.target.value);
     if (e.target.value !== "") {
-      axios.get('https://restcountries.eu/rest/v2/name/'+e.target.value).then(response => {
+      axios.get(`https://restcountries.com/v3.1/name/${e.target.value}`).then(response => {
         setCountries(response.data);
       }).catch(err => {
         setCountries("");
@@ -74,7 +74,7 @@ function App() {
       </div>
       <div className="container countries">
         {loading && <div>Loading...</div>}
-        {countries && !loading && countries.map(country => <Link to={country.alpha3Code} key={country.alpha3Code}><Country country={country} /></Link>)}
+        {countries && !loading && countries.map(country => <Link to={country.cca3} key={country.cca3}><Country country={country} /></Link>)}
         {countries.length === 0 && !loading && "There is no country with this name."}
       </div>
     </div>

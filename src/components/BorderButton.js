@@ -6,8 +6,8 @@ function BorderButton({ code }) {
   let [countryName, setCountryName] = useState("");
 
   useEffect(() => {
-    axios.get("https://restcountries.eu/rest/v2/alpha/"+code).then(response => {
-      setCountryName(response.data.name);
+    axios.get("https://restcountries.com/v3.1/alpha/"+code).then(response => {
+      setCountryName(response.data[0].name.common);
     }).catch(error => {
       console.log(error);
     });

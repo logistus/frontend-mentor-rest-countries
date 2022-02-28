@@ -13,8 +13,8 @@ function CountryDetail() {
 
   useEffect(() => {
     if (country_code !== "") {
-      axios.get("https://restcountries.eu/rest/v2/alpha/"+country_code).then(response => {
-        setDetails(response.data);
+      axios.get("https://restcountries.com/v3.1/alpha/"+country_code).then(response => {
+        setDetails(response.data[0]);
         setLoading(false);
       }).catch(error => {
         setDetails("");
@@ -31,31 +31,41 @@ function CountryDetail() {
         {details && !loading && 
         <div className={`details details-${theme}`}>
           <div className="details-flag">
-            <img src={details.flag} alt={details.name} style={{ width: '560px' }} />
+            <img src={details.flags.png} alt={details.name.common} style={{ width: '560px' }} />
           </div>
           <div className="details-other">
-            <h1>{details.name}</h1>
+            <h2>{details.name.official}</h2>
             <div className="details-panels">
               <div>
-                <div><strong>Native Name: </strong>{details.nativeName}</div>
+                <div><strong>Native Name: </strong>{Object.entries(details.name.nativeName).map(([key]) => {
+                  return details.name.nativeName[key].official
+                })}</div>
                 <div><strong>Population: </strong>{details.population.toLocaleString()}</div>
                 <div><strong>Region: </strong>{details.region}</div>
                 <div><strong>Sub Region: </strong>{details.subregion}</div>
                 <div><strong>Capital: </strong>{details.capital}</div>
               </div>
               <div>
-                <div><strong>Top Level Domain: </strong>{details.topLevelDomain}</div>
+                <div><strong>Top Level Domain: </strong>{details.tld}</div>
                 <div>
-                  <strong>Currencies: </strong>{details.currencies.map(currency => <span key={currency.code}>{currency.name}</span>)}
+                  <strong>Currencies: </strong>{Object.entries(details.currencies).map(([key, value]) => {
+                    return details.currencies[key].name
+                  })}
                 </div>
                 <div>
                   <strong>Languages: </strong>
-                    {details.languages.map((language, index) => <span key={language.iso639_1}>{language.name} {index < details.languages.length - 1 ? ", " : ""}</span>)}
+                    {Object.entries(details.languages).map(([key]) => {
+                      return details.languages[key]
+                    })}
                 </div>
               </div>
             </div>
             <div className={`details-borders details-borders-${theme}`}>
-                <strong>Border Countries:</strong> <div className="borders">{ details.borders.map(border => <BorderButton key={border} code={border} />) }</div>
+                <strong>Border Countries:</strong> <div className="borders">{ 
+                details.borders ? 
+                details.borders.map(border => <BorderButton key={border} code={border} />) :
+                'None' }
+                </div>
               </div>
           </div>
         </div>
