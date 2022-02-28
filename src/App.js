@@ -16,7 +16,7 @@ function App() {
   const {theme} = useContext(ThemeContext);
 
   const fetchAll = () => {
-    axios.get('https://restcountries.eu/rest/v2/all').then(response => {
+    axios.get(`https://api.countrylayer.com/v2/all?access_key=${process.env.ACCESS_KEY}`).then(response => {
       setCountries(response.data);
       setLoading(false);
     }).catch(err => {
