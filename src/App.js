@@ -15,7 +15,8 @@ function App() {
   let [loading, setLoading] = useState(true);
   const {theme} = useContext(ThemeContext);
 
-  const fetchAll = () => {
+  useEffect(() => {
+      const fetchAll = () => {
     axios.get(`https://restcountries.com/v3.1/all?fields=name,flag,region,capital`).then(response => {
       setCountries(response.data);
       setLoading(false);
@@ -25,8 +26,6 @@ function App() {
       console.error(err);
     });
   }
-
-  useEffect(() => {
     fetchAll()
   }, []);
 
